@@ -35,11 +35,11 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => 'Домашня', 'url' => ['/site/index']],
-                    ['label' => 'Про практику', 'url' => ['/site/about']],
-                    ['label' => 'Контактувати', 'url' => ['/site/contact']],
-                    ['label' => 'Налаштування', 'url' => ['/user/settings/profile']],
-                    ['label' => 'Профіль', 'url' => ['/user/profile']],//user%2Fprofile
+                    //['label' => 'Домашня', 'url' => ['/site/index']],
+                    ['label' => 'Новини', 'url' => ['/site/about']],
+                    ['label' => 'Контакти', 'url' => ['/site/contact']],
+                    ['label' => 'Профіль', 'url' => ['/user/settings/profile']],
+                    ['label' => 'Деталі', 'url' => ['/user/profile']],//user%2Fprofile
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/user/security/login']] : //user/login
                         ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
