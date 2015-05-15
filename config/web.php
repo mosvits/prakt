@@ -13,11 +13,65 @@ $config = [
 			'class' => 'dektrium\user\Module',
 			'admins' => ['mosvits']
         ],
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'top-menu',
+            //'controllerMap' => [
+                /*'assignment' => [
+                    'class' => 'mdm\admin\controllers\AssignmentController',
+                    'userClassName' => 'app\models\User',
+                    'idField' => 'user_id'
+                ],
+                'other' => [
+                    'class' => 'path\to\OtherController', // add another controller
+                ],*/
+            //],
+        ],
+        'room' => [
+                'class' => 'app\modules\room\Module',
+        ],
+
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'admin/*', // add or remove allowed actions to this list
+            'user/*',
+            'site/*',
+            'debug/*',
+            'gii/*',
+            'company/*',
+            'group/*',
+            'room/*',
+        ],
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\PhpManager'
+            //'class' => 'yii\rbac\PhpManager', // or use
+            'defaultRoles' => ['guest'],
+            //'UserRoleRule'
+        ],
+        'urlManager' => [
+
+
+
+
+            'enablePrettyUrl' => true,
+            //'showScriptName' => false  //.htaccess required
+            'rules' => [
+                ''  =>  'site/index',
+                'login' => 'site/login',
+            ]
+        ],
+        'assetManager' => [
+            'basePath' => '@webroot/assets',
+            'baseUrl' => '@web/assets'
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'xEcu48Ui9AoqYP6RFF87dkYYlOZRwoeI',
+            //'baseUrl' => '',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -47,21 +101,27 @@ $config = [
 		'authClientCollection' => [
 			'class'   => \yii\authclient\Collection::className(),
 			'clients' => [
+                'google' => [
+                    'class'        => 'dektrium\user\clients\Google',
+                    'clientId'     => '304565222318-8hms1d2tmmt7vofb0ar1n4b1fdtr93im.apps.googleusercontent.com',
+                    'clientSecret' => 'gidaWbAuh8IJPuicuL1h9mff',
+                ],
+//                'vkontakte' => [
+//                    'class'        => 'dektrium\user\clients\Vkontakte',
+//                    'clientId'     => '4892090',
+//                    'clientSecret' => 'B9U0wFqCjW4xXxTB8QQQ',
+//                ],
 				'facebook' => [
 					'class'        => 'dektrium\user\clients\Facebook',
-					'clientId'     => 'CLIENT_ID',
-					'clientSecret' => 'CLIENT_SECRET',
+					'clientId'     => '1381211678844240',
+					'clientSecret' => 'c082dc8e8f08257a41161fe3db26e44c',
 				],
 				'twitter' => [
 					'class'          => 'dektrium\user\clients\Twitter',
-					'consumerKey'    => 'CONSUMER_KEY',
-					'consumerSecret' => 'CONSUMER_SECRET',
+					'consumerKey'    => 'ADloaRcrdAKbZdeRLGm4sI4Hc',
+					'consumerSecret' => 'kvmF75Um2ML6txgp69woMg86mDQTJSmndA8Yxp8TeX534QWuKr',
 				],
-				'google' => [
-					'class'        => 'dektrium\user\clients\Google',
-					'clientId'     => 'CLIENT_ID',
-					'clientSecret' => 'CLIENT_SECRET',
-				],
+
 			],
 		],
         'db' => require(__DIR__ . '/db.php'),

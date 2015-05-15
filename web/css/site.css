@@ -2,7 +2,9 @@ html,
 body {
     height: 100%;
 }
-
+.solidtable tr td {
+			padding: 10px;
+}
 .wrap {
     min-height: 100%;
     height: auto;

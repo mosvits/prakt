@@ -12,14 +12,14 @@ use yii\base\Model;
 
 class EntryForm extends Model
 {
-    public $name;
-    public $email;
+    public $speciality_id;
+    public $group_id;
 
     public function rules()
     {
         return [
-            [['name', 'email'], 'required'],
-            ['email', 'email'],
+            //[['name', 'email'], 'required'],
+            [['speciality_id','group_id'], 'integer'],//
         ];
     }
 }
